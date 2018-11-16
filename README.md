@@ -5,7 +5,7 @@
 |Name|GitHub UBC Personal Repo - Proposal|
 |--|--|--|
 |Fan Wu|[fwu03](https://github.ubc.ca/MDS-2018-19/DSCI_522_proposal_fwu03)|
-|Sreya Guha||
+|Sreya Guha|[]()|
 
 ### Chicago Crimes Dataset
 We will analyze the Chicago crimes dataset that reflects the crimes occurred in Chicago, USA from 2012-2017. The dataset includes following contents:
