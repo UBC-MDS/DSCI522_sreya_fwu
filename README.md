@@ -7,7 +7,10 @@
 
 
 ### Chicago Crimes Dataset
-We are going to analyze the Chicago crimes dataset that reflects the crimes occurred in Chicago from 2016-2017. The dataset includes the following contents:
+We are going to analyze the Chicago crimes dataset that reflects reported incidents of crime (with the exception of murders where data exists for each victim) that occurred in the City of Chicago from 2016 to 2017. Data is extracted from the Chicago Police Department’s CLEAR (Citizen Law Enforcement Analysis and Reporting) system. In order to protect the privacy of crime victims, addresses are shown at the block level only and specific locations are not identified.
+Essentially, this dataset contains the type of Crime, Location, Sub Category of the Crime, Type of Vicinity and Whether the arrest was possible or not.
+
+The dataset includes the following contents:
 
 | Column name | datatype | Description |
 | --- | -- | -- |
@@ -35,18 +38,22 @@ We are going to analyze the Chicago crimes dataset that reflects the crimes occu
 | Location | String | Location of the crime |
 
 
-We write a script to download the dataset as follow:
+We wrote a script to download the dataset as follows:
 
 ![image](https://github.com/UBC-MDS/DSCI522_sreya_fwu/blob/master/img/screenshot_data_load.png)
 
 
-### Predictive Question
+### Research Question
 
 **What are the strongest predictors of an arrest result for a crime in Chicago?**
 
+#### Type of question
+
+This is a **predictive** question and we shall use a Decision Tree to answer the same.
+
 ### Data Analysis Plan
 
-The goal of this analysis is to explore the Chicago Crimes Dataset from 2016-2017, classify the features that determine the arrest result, and construct a prediction model to identify whether an arrest could happen for a future crime. The detailed steps for this analysis are:
+The goal of this analysis is to explore the Chicago Crimes Dataset from 2016-2017, classify the features that determine the arrest result, and construct a predictive model to identify whether an arrest could happen for a future crime. The detailed steps for this analysis are:
 
 Step 1. Load data into Python
 
@@ -60,9 +67,9 @@ Step 2. Data wrangling:
 
 Step 3. Visualizations of the dataset:
 
-- Which crime was maximum? 
+- The numer of crimes reported in the 2 years
 - Location with the highest crime rate
-- Crimes trend among 2016-2017
+- Crime trend among 2016-2017
 - Summary of the arrest results
 
 Step 4. Prediction Model: 
@@ -70,7 +77,7 @@ Step 4. Prediction Model:
 In this analysis, we will apply the decision tree method to find the strongest features that are able to predict the arrest result.
 
 - Separate the dataset into training and testing datasets (7:3).
-- Define the variable X to be a feature vector includes the time of the crime, primary type, description, location, and domestic.
+- Define the variable X to be a feature vector that includes the time of the crime, primary type (category of the crime), description, location, and domestic (if it was a domestic crime).
 - Define the target variable Y to be the arrest result. 
 - Use the decision tree package in Python (i.e. Scikit Learn) to model the relationship between X and Y. 
 - Once we get the tree, we can use it to get the predicted arrest results for the testing dataset and compare them with the actual results to get the accuracy rate.
@@ -78,5 +85,5 @@ In this analysis, we will apply the decision tree method to find the strongest f
 
 ### Experimental Results
 
-To present our result, we will draw the entire tree as we only consider five features and indicate the strongest predictors chosen by this method. Additionally, we will report the classification error.
+To present our result, we will draw the entire tree as we considered five features and indicate the strongest predictors chosen by this method. Additionally, we will report the classification error.
 
