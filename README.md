@@ -62,7 +62,7 @@ Step 3. Visualizations of the dataset:
 
 - Which crime was maximum? 
 - Location with the highest crime rate
-- Crimes trend among 2012-2017
+- Crimes trend among 2016-2017
 - Summary of the arrest results
 
 Step 4. Prediction Model: 
