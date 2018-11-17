@@ -1,29 +1,52 @@
 # A Crime Data Analysis in Chicago
 
-### Team Information
+| **Team Members** |
+| -- |
+| Fan Wu |
+| Sreya Guha |
 
-|Name|GitHub UBC Personal Repo - Proposal|
-|--|--|--|
-|Fan Wu|[fwu03](https://github.ubc.ca/MDS-2018-19/DSCI_522_proposal_fwu03)|
-|Sreya Guha|[]()|
 
 ### Chicago Crimes Dataset
-We will analyze the Chicago crimes dataset that reflects the crimes occurred in Chicago, USA from 2012-2017. The dataset includes following contents:
+We are going to analyze the Chicago crimes dataset that reflects the crimes occurred in Chicago from 2016-2017. The dataset includes the following contents:
 
-|Column Name|Description|
-|--|--|
-|||
+| Column name | datatype | Description |
+| --- | -- | -- |
+| ID | Numeric | Identifier for a particular case of crime |
+| Case Number | String | Case number with the police | 
+| Date | Date | Date and time at which the crime occured | 
+| Block | String | Block where the crime occured | 
+| IUCR | Numeric | Illinois Uniform Crime Reporting |
+| Primary Type | String | Type of crime |
+| Description | String | Description of the crime |
+| Location Description | String | Location of the crime |
+| Arrest | Boolean | Whether an arrest was made | 
+| Domestic | Boolean | Whether it is a domestic violence case | 
+| Beat | Numeric | -- | 
+| District | Numeric | Disrict where the crime occured | 
+| Ward | Numeric | Ward where the crime occured | 
+| Community Area | Numeric | Community area where the crime occured |
+| FBI Code | Numeric | FBI code for the crime |
+| X Coordinate | Numeric | Loaction co-ordinates of the crime |
+| Y Coordinate | Numeric | Loaction co-ordinates of the crime |
+| Year | Numeric | Year when the crime occured | 
+| Updated On | Date | Time and date when the investigation for the crime was updated | 
+| Latitude | Numeric | Loaction co-ordinates of the crime | 
+| Longitude | Numeric | Loaction co-ordinates of the crime |
+| Location | String | Location of the crime |
+
 
 We write a script to download the dataset as follow:
-[need a screenshot here]
 
-### Preductive Question
+![image]("../img/screenshot_data_load.png")
 
-What are the strongest predictors of an arrest result for a crime in Chicago?  
+
+### Predictive Question
+
+**What are the strongest predictors of an arrest result for a crime in Chicago?**
 
 ### Data Analysis Plan
 
-The goal of this analysis is to analyze the Chicago Crimes Dataset from 2012-2017, classify the features that determine the arrest result, and construct a prediction model to identify whether an arrest could happen for future crime. The detailed steps for this analysis are:
+The goal of this analysis is to explore the Chicago Crimes Dataset from 2016-2017, classify the features that determine the arrest result, and construct a prediction model to identify whether an arrest could happen for a future crime. The detailed steps for this analysis are:
 
 Step 1. Load data into Python
 
@@ -31,29 +54,29 @@ Step 2. Data wrangling:
 
 - Checking missing values
 - Dealing with null values
-- Cleaning the description column with standard key words
-- Putting the arrest and domestic columns into 1 or 0
-- Separating the date and time.
+- Cleaning the description column with standard keywords
+- Putting the arrest and domestic columns into 1 (True) or 0 (False)
+- Separating the date and time into two columns.
 
-Step 3. Visualiztions of the dataset:
+Step 3. Visualizations of the dataset:
 
 - Which crime was maximum? 
-- Location with highest crime rate
+- Location with the highest crime rate
 - Crimes trend among 2012-2017
 - Summary of the arrest results
 
 Step 4. Prediction Model: 
 
-In this analysis, we will apply the linear regression model to find the strongest features that are able to predict the arrest result.
+In this analysis, we will apply the decision tree method to find the strongest features that are able to predict the arrest result.
 
-- Separate the dataset into training and testing dataset (7:3).
-- Define the explanatory variable X to be a vector includes time of the crime, primary type, description, location, and domestic.
-- Define the dependent variable Y to be the arrest result. 
-- Use the linear regression to model the relationship between X and Y. 
-- Once we get the equation, we can use it to get the predicted arrest results for the testing dataset, and compare them with the actual results to get the accurancy rate.
+- Separate the dataset into training and testing datasets (7:3).
+- Define the variable X to be a feature vector includes the time of the crime, primary type, description, location, and domestic.
+- Define the target variable Y to be the arrest result. 
+- Use the decision tree package in Python (i.e. Scikit Learn) to model the relationship between X and Y. 
+- Once we get the tree, we can use it to get the predicted arrest results for the testing dataset and compare them with the actual results to get the accuracy rate.
 
 
 ### Experimental Results
 
-To present our result, we are going to use a table to show the coefficients for all variables and a graph to indicate the relationship between observations (points) and the regression model (a line). Besides, we will also examine the fitness of our model by calculating the R-squared value. 
+To present our result, we will draw the entire tree as we only consider five features and indicate the strongest predictors chosen by this method. Additionally, we will report the classification error.
 
