@@ -37,7 +37,7 @@ We are going to analyze the Chicago crimes dataset that reflects the crimes occu
 
 We write a script to download the dataset as follow:
 
-![image]("https://github.com/UBC-MDS/DSCI522_sreya_fwu/blob/master/img/screenshot_data_load.png")
+![image](https://github.com/UBC-MDS/DSCI522_sreya_fwu/blob/master/img/screenshot_data_load.png)
 
 
 ### Predictive Question
