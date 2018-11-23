@@ -1,3 +1,13 @@
+# 02_data-EDA.R
+
+# PURPOSE: The script takes the clean crime dataset and generates data visualizations
+#
+# ARGUMENTS:
+#     ARG1 = input file path
+#     ARG2 = output file path
+#
+# USAGE: "Rscript src/02_data-EDA.R data/crime_1617_clean_data.csv img/"
+
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(dplyr))
@@ -8,6 +18,7 @@ args <- commandArgs(trailingOnly = TRUE)
 input_file <- args[1]
 output_file <- args[2]
 
+# define the main function
 main <- function(){
   #read clean data
   crime <- read.csv(input_file)

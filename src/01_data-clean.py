@@ -4,6 +4,16 @@
 # In[92]:
 
 
+# 01_data-clean.ipynb
+
+# PURPOSE: The script takes the raw crime dataset and generates the clean dataset
+#
+# ARGUMENTS:
+#     ARG1 = input file path
+#     ARG2 = output file path
+#
+# USAGE: "python src/data_clean.py data/crime_1617_raw_data.csv data/crime_1617_clean_data.csv"
+
 import sys
 import pandas as pd
 import matplotlib.pyplot as plt

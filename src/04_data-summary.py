@@ -4,6 +4,16 @@
 # In[13]:
 
 
+# 04_data-summary.ipynb
+
+# PURPOSE: The script takes the model from 03_data-analysis.py and then generates the physical decision tree
+#
+# ARGUMENTS:
+#     ARG1 = input file path
+#     ARG2 = output file path
+#
+# USAGE: "python src/data_summary.py results/crime_1617_decisiontree_model.sav img/"
+
 import sys
 import graphviz
 import pickle

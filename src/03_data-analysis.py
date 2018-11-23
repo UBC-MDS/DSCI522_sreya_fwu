@@ -4,6 +4,17 @@
 # In[114]:
 
 
+# 03_data-analysis.ipynb
+
+# PURPOSE: The script takes the clean crime dataset and fit the dataset into decision tree model
+#
+# ARGUMENTS:
+#     ARG1 = input file path
+#     ARG2 = output file path
+#
+# USAGE: "python src/data_analysis.py data/crime_1617_clean_data.csv results/"
+
+
 import pandas as pd
 import numpy as np
 import sys
