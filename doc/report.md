@@ -157,7 +157,8 @@ conclude that this tree can be used as a suitable predictor for arrest.
 
 The final tree can be visualized below:
 
-*Figure 4. Decision Tree* ![image](../img/Crime_Tree.png)
+*Figure 4. Decision Tree* 
+![image](../img/Crime_Tree.png)
 
 We performed 10-fold cross validation to calculate the accuracy of our
 model. The table below shows the 10 cross validation scores:
