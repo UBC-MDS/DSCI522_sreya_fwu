@@ -5,8 +5,17 @@
 
 
 # 04_data-summary.ipynb
-
-# PURPOSE: The script takes the model from 03_data-analysis.py and then generates the physical decision tree
+# 
+# TEAM: Fan Wu & Sreya Guha
+# DATE: November 23, 2018
+#
+# PURPOSE: The script takes the model from 03_data-analysis.py and generates the corresponding decision tree
+#
+# INPUT:
+#    - Decision Tree Model: "results/crime_1617_decisiontree_model.sav"
+#
+# OUTPUT:
+#    - Decision Tree Graph: "img/Crime_tree.pdf"
 #
 # ARGUMENTS:
 #     ARG1 = input file path
@@ -23,14 +32,17 @@ from sklearn import tree
 
 
 def main():
+    
+    '''main function: grab the arg1 and arg2 as input file path and output file path '''
+    
     input_file = sys.argv[1]
     output_file = sys.argv[2]
     data_summary(input_file, output_file)
 
 def save_and_show_decision_tree(model, feature_cols, class_names, save_file_prefix, **kwargs):
-    """
-    Saves the decision tree model as a pdf and a 
-    """
+    
+    '''Saves the decision tree model as a pdf '''
+
     dot_data = tree.export_graphviz(model, out_file=None, 
                              feature_names=feature_cols,  
                              class_names=class_names,  
@@ -42,12 +54,17 @@ def save_and_show_decision_tree(model, feature_cols, class_names, save_file_pref
     return graph
 
 def data_summary(input_file, output_file):
+    
+    '''generates the decision tree model to a specific file path'''
+    
     #load model
     model = pickle.load(open(input_file, 'rb'))
     feature_cols = ['Primary.Type.Num','Location.Description.Num','Domestic','Latitude','Longitude']
     
+    #generate decision tree
     crime_tree = save_and_show_decision_tree(model,feature_cols, ['Target:1', 'Target:0'], output_file + 'Crime_tree')
-    
+
+#call main function
 if __name__ == '__main__':
     main() 
 
