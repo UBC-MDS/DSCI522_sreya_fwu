@@ -6,7 +6,7 @@
 
 # 04_data-summary.ipynb
 # 
-# TEAM: Fan Wu & Sreya Guha
+# TEAM: Fan Wu
 # DATE: November 23, 2018
 #
 # PURPOSE: The script takes the model from 03_data-analysis.py and generates the corresponding decision tree

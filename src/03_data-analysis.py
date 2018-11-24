@@ -6,7 +6,7 @@
 
 # 03_data-analysis.ipynb
 # 
-# TEAM: Fan Wu & Sreya Guha
+# TEAM: Fan Wu
 # DATE: November 23, 2018
 #
 # PURPOSE: The script takes the clean crime dataset, select five specific columns as features, 
