@@ -6,7 +6,7 @@
 
 # 01_data-clean.ipynb
 # 
-# TEAM: Fan Wu & Sreya Guha
+# TEAM: Fan Wu
 # DATE: November 23, 2018
 #
 # PURPOSE: The script takes a raw crime dataset and generates a clean dataset through cleaning
