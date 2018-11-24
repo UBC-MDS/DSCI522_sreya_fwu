@@ -1,0 +1,102 @@
+---
+title: "Crime analysis Report"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = here::here())
+```
+
+## Foreword
+
+The goal of the project is to analyze the Chicago crimes dataset and build a model that gives us the strongest predictors of an arrest. Essentially, this dataset contains the type of Crime, Location, Sub Category of the Crime, Type of Vicinity and Whether the arrest was possible or not.
+
+This project consists of two phases - Analyzing the dataset, Building a Decision Tree model.
+
+## Table of contents
+
+- Data Load
+- Data Cleaning
+- Data Analysis
+- Decision Tree model
+- Results
+- Conclusion
+- References
+
+## Data Load
+
+This dataset reflects reported incidents of crime (with the exception of murders where data exists for each victim) that occurred in the City of Chicago from 2016 to 2017. Data is extracted from the Chicago Police Department's CLEAR (Citizen Law Enforcement Analysis and Reporting) system. In order to protect the privacy of crime victims, addresses are shown at the block level only and specific locations are not identified. The data is in the following form:
+
+![alt tag](../results/figure/data.png)
+
+This dataset has 276819 rows and 24 columns 
+
+The dataset includes the following columns:
+
+![alt tag](../results/figure/data_dict.png)
+
+## Data Cleaning
+
+#### Dealing with Null Values
+
+The first step is to identify all null values in the dataset and remove all of them.
+
+In the next step, we first update the Date format to datetime. 
+Then, we generate two new columns `Crime_Date` and `Crime_Time` to store the Date and Time information separately from the Date column.
+
+![alt tag](../results/figure/data_dict.png)
+
+We also need to map the columns `Arrest` and `Domestic` to the boolean values to 1 (True) and 0 (False).
+
+![alt tag](../results/figure/data_dict.png)
+
+#### Classifying Data
+
+Let's check the how many crime types we have in the dataset.
+
+![alt tag](../results/figure/data_dict.png)
+
+The above table shows that several crime types can be combined together.
+
+![alt tag](../results/figure/data_dict.png)
+
+## Data Analysis
+
+We first analyse the crimes that occured in 2016 and 2017
+
+![alt tag](../results/figure/crime_count.png)
+
+From the above table we can see the most rampant crimes that occur in 2016 and 2017 are Theft and Sexual Assault. 
+The numbers are pretty high for a span of two years!
+
+Now we can plot the top crimes in these two years.
+
+![alt tag](../results/figure/crime_type_bar.png)
+
+Next we can comapre the locations where crimes have occurred in 2016 and 2017
+
+![alt tag](../results/figure/crime_location.png)
+
+Street and Residence are in the top position for crimes and Residence and Sidewalk are almost similar.
+
+Let's plot
+
+![alt tag](../results/figure/crime_loc_bar.png)
+
+Let's now compare the number of crimes with the number of arrests in these years.
+
+![alt tag](../results/figure/year_count.png)
+
+Let's now plot these arrest counts against the crime counts
+
+![alt tag](../results/figure/arrest_count_plot.png)
+
+## Decision Tree model
+
+## Results
+
+## Conclusion
+
+## References
+
