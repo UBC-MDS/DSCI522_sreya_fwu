@@ -111,13 +111,14 @@ The final tree can be visualized below:
 *Figure 4. Decision Tree*
 ![image](../img/Crime_Tree.png)
 
-We performed 10-fold cross validation to calculate the accuracy of our model. The table below shows the 10  cross validation scores:
+We performed 10-fold cross validation to calculate the accuracy of our model. The table below shows the 10 cross validation scores:
 
 *Table 4. Cross Validation Scores*
 ```{r cross validation results, echo = FALSE}
 cv <- read.csv("./results/crime_1617_decisiontree_cvscores.csv")
 knitr::kable(cv)
 ```
+The average of above 10 scores is around 87%.
 
 To calculate the imprtant features we decided to use Scikit-learn's `feature_importances_`. This function computes the importance of a feature is computed as the (normalized) total reduction of the criterion brought by that feature. It is also known as the Gini importance.
 
