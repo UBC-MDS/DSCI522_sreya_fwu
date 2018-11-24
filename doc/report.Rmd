@@ -40,6 +40,7 @@ This project consists of two phases - Analyzing the dataset, Building a Decision
 This dataset reflects reported incidents of crime (with the exception of murders where data exists for each victim) that occurred in the City of Chicago from 2016 to 2017. Data is extracted from the Chicago Police Department's CLEAR (Citizen Law Enforcement Analysis and Reporting) system. In order to protect the privacy of crime victims, addresses are shown at the block level only and specific locations are not identified. The data is in the following form:
 
 *Table 1. Chicago Crime Raw Dataset* 
+
 ```{r raw data, echo = FALSE}
 crime_rawdata <- head(read.csv("./data/crime_1617_raw_data.csv"))
 knitr::kable(crime_rawdata)
@@ -109,7 +110,7 @@ A decision tree can take many hyper-parameters. We performed our experiments wit
 The final tree can be visualized below:
 
 *Figure 4. Decision Tree*
-![image](../img/Crime_Tree.png)
+![image](../img/Crime_tree.png)
 
 We performed 10-fold cross validation to calculate the accuracy of our model. The table below shows the 10 cross validation scores:
 

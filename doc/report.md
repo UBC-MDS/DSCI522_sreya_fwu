@@ -112,24 +112,25 @@ A decision tree can take many hyper-parameters. We performed our experiments wit
 
 The final tree can be visualized below:
 
-*Figure 4. Decision Tree* ![image](../img/Crime_Tree.png)
+*Figure 4. Decision Tree* ![image](../img/Crime_tree.png)
 
 We performed 10-fold cross validation to calculate the accuracy of our model. The table below shows the 10 cross validation scores:
 
 *Table 4. Cross Validation Scores*
 
-|  index|  cv\_score|
-|------:|----------:|
-|      1|  0.8736045|
-|      2|  0.8709463|
-|      3|  0.8712121|
-|      4|  0.8745181|
-|      5|  0.8702645|
-|      6|  0.8735877|
-|      7|  0.8745015|
-|      8|  0.8707790|
-|      9|  0.8711779|
-|     10|  0.8750332|
+|     index|                              cv\_score|
+|---------:|--------------------------------------:|
+|         1|                              0.8736045|
+|         2|                              0.8709463|
+|         3|                              0.8712121|
+|         4|                              0.8745181|
+|         5|                              0.8702645|
+|         6|                              0.8734547|
+|         7|                              0.8745015|
+|         8|                              0.8707790|
+|         9|                              0.8711779|
+|        10|                              0.8750332|
+|  The aver|  age of above 10 scores is around 87%.|
 
 To calculate the imprtant features we decided to use Scikit-learn's `feature_importances_`. This function computes the importance of a feature is computed as the (normalized) total reduction of the criterion brought by that feature. It is also known as the Gini importance.
 
