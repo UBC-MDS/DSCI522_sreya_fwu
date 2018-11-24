@@ -76,6 +76,17 @@ main <- function(){
   crime_arrest_plot <- generate_bar_year(crime_arrest_year)
   ggsave("crime_arrest.png", plot = crime_arrest_plot, path = output_file,
          width = 6, height = 6)
+    
+  #crime month analysis
+  crime_month <- crime %>% 
+    mutate(month =as.factor(month(Crime_Date)))
+  crime_month <- crime_month %>% 
+    group_by(month) %>% 
+    summarize(Total = n())
+  #crime month bar plot
+  crime_month_plot  <- generate_bar_month(crime_month)
+  ggsave("crime_month.png", plot = crime_month_plot, path = output_file,
+         width = 6, height = 6)
 }
 
 #define a function to generate bar plot
@@ -110,6 +121,13 @@ generate_bar_year <- function(dataset){
     scale_fill_manual(values=c("#0000A0","#800000")) +
     labs(title=paste("Number of arrests per crime"), x="Type of Crime", y="Number of arrests") +
     theme(axis.text.x=element_text(angle=90,hjust=1))
+  return(plot)
+    
+generate_bar_month <- function(dataset){
+    plot <- dataset %>%
+    ggplot(aes(x-month, y=Total)) + 
+    geom_bar(stat = "identity", fill="#800000", show.legend = FALSE) +
+    labs(title=paste("Number of crimes per month"), x="Month", y="Number of instances of crime")
   return(plot)
 }
 
