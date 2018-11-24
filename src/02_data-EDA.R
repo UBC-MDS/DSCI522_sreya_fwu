@@ -1,6 +1,17 @@
 # 02_data-EDA.R
-
+# 
+# TEAM: Fan Wu & Sreya Guha
+# DATE: November 23, 2018
+#
 # PURPOSE: The script takes the clean crime dataset and generates data visualizations
+#
+# INPUT:
+#    - Clean Dataset: "data/crime_1617_clean_data.csv"
+#
+# OUTPUTS:
+#    - Bar Plot for Crime Types: "img/crime_type_bar.png"
+#    - Bar Plot for Crime Locations: "img/crime_loc_bar.png"
+#    - Bar Plot for Both Crime and Arrest: "img/crime_arrest.png"
 #
 # ARGUMENTS:
 #     ARG1 = input file path
@@ -18,24 +29,25 @@ args <- commandArgs(trailingOnly = TRUE)
 input_file <- args[1]
 output_file <- args[2]
 
-# define the main function
+#define the main function
 main <- function(){
+  
   #read clean data
   crime <- read.csv(input_file)
   
-  # crime type analysis
+  #crime type analysis
   crime_type_count <- crime %>% 
     group_by(Primary.Type) %>% 
     summarise(counts=n()) %>%
     arrange(desc(counts)) 
   crime_type_count <- crime_type_count %>% 
     mutate(Primary.Type = fct_reorder(Primary.Type, counts))
-  
+  #crime type bar plot
   crime_type_plot <- generate_bar(crime_type_count, crime_type_count$Primary.Type, crime_type_count$counts, "Type of Crime", "Count", "Top crimes in 2016-2017")
   ggsave("crime_type_bar.png", plot = crime_type_plot, path = output_file,
          width = 6, height = 6)
   
-  # crime location analysis
+  #crime location analysis
   crime_loc_count <- crime %>% 
     group_by(Location.Description) %>% 
     summarise(counts=n()) %>%
@@ -43,29 +55,30 @@ main <- function(){
     head(20)
   crime_loc_count <- crime_loc_count %>% 
     mutate(Location.Description = fct_reorder(Location.Description, counts))
-  
+  #cfrime location bar plot
   crime_loc_plot <- generate_bar(crime_loc_count, crime_loc_count$Location.Description, crime_loc_count$counts, "Location", "Count", "Location of crimes in 2016-2017")
   ggsave("crime_loc_bar.png", plot = crime_loc_plot, path = output_file,
          width = 6, height = 6)
   
-  # crime per year
+  #crime arrest analysis
   crime_year <- crime %>% 
     group_by(Year, Primary.Type) %>%
     summarise(crime_count=n())
-  # arrests per year
   arrest_year <- crime %>% 
     group_by(Year, Primary.Type) %>%
     filter(Arrest==1) %>%  
     summarise(arrest_count=n())
-  # crime_arrests analysis
+  
+  #crime arrests analysis
   crime_arrest_year <- left_join(crime_year,arrest_year)
   crime_arrest_year <- gather(crime_arrest_year, key = "crime_arrest", value = "value", arrest_count, crime_count)
-  # plot
+  #crime arrest bar plot
   crime_arrest_plot <- generate_bar_year(crime_arrest_year)
   ggsave("crime_arrest.png", plot = crime_arrest_plot, path = output_file,
          width = 6, height = 6)
 }
 
+#define a function to generate bar plot
 generate_bar <- function(dataset, x, y, xlabel, ylabel, ttl){
   plot <- dataset %>% 
     ggplot(aes(x, y)) +
@@ -82,6 +95,7 @@ generate_bar <- function(dataset, x, y, xlabel, ylabel, ttl){
   return (plot)
 }
 
+#define a function to generate bar plot for crime arrest analysis
 generate_bar_year <- function(dataset){
   plot <- dataset %>% 
     top_n(35) %>% 
