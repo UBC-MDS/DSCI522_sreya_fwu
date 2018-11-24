@@ -12,7 +12,7 @@
 #     ARG1 = input file path
 #     ARG2 = output file path
 #
-# USAGE: "python src/data_summary.py results/crime_1617_decisiontree_model.sav img/"
+# USAGE: "python src/04_data-summary.py results/crime_1617_decisiontree_model.sav img/"
 
 import sys
 import graphviz

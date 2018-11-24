@@ -39,8 +39,9 @@ main <- function(){
   crime_loc_count <- crime %>% 
     group_by(Location.Description) %>% 
     summarise(counts=n()) %>%
-    arrange(desc(counts))
-  crime_loc_count %>% 
+    arrange(desc(counts)) %>% 
+    head(20)
+  crime_loc_count <- crime_loc_count %>% 
     mutate(Location.Description = fct_reorder(Location.Description, counts))
   
   crime_loc_plot <- generate_bar(crime_loc_count, crime_loc_count$Location.Description, crime_loc_count$counts, "Location", "Count", "Location of crimes in 2016-2017")
@@ -60,12 +61,9 @@ main <- function(){
   crime_arrest_year <- left_join(crime_year,arrest_year)
   crime_arrest_year <- gather(crime_arrest_year, key = "crime_arrest", value = "value", arrest_count, crime_count)
   # plot
-  crime_arrest_2016_plot <- generate_bar_year(crime_arrest_year, 2016)
-  crime_arrest_2017_plot <- generate_bar_year(crime_arrest_year, 2017)
-  ggsave("crime_arrest_2016.png", plot = crime_arrest_2016_plot, path = output_file,
+  crime_arrest_plot <- generate_bar_year(crime_arrest_year)
+  ggsave("crime_arrest.png", plot = crime_arrest_plot, path = output_file,
          width = 6, height = 6)
-  ggsave("crime_arrest_2017.png", plot = crime_arrest_2017_plot, path = output_file,
-         width = 6, height = 6)   
 }
 
 generate_bar <- function(dataset, x, y, xlabel, ylabel, ttl){
@@ -84,9 +82,9 @@ generate_bar <- function(dataset, x, y, xlabel, ylabel, ttl){
   return (plot)
 }
 
-generate_bar_year <- function(dataset, yr){
+generate_bar_year <- function(dataset){
   plot <- dataset %>% 
-    filter(Year==yr) %>% 
+    top_n(35) %>% 
     ggplot(aes(x=Primary.Type, y=value, fill=crime_arrest)) +
     geom_bar(position = "dodge", stat="identity") +
     theme_bw() +
@@ -96,7 +94,7 @@ generate_bar_year <- function(dataset, yr){
           panel.border = element_blank(),
           panel.background = element_blank()) +
     scale_fill_manual(values=c("#0000A0","#800000")) +
-    labs(title=paste("Number of arrests per crime in ", as.character(yr)), x="Type of Crime", y="Number of arrests") +
+    labs(title=paste("Number of arrests per crime"), x="Type of Crime", y="Number of arrests") +
     theme(axis.text.x=element_text(angle=90,hjust=1))
   return(plot)
 }
