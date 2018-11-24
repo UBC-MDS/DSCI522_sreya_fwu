@@ -12,7 +12,7 @@
 #     ARG1 = input file path
 #     ARG2 = output file path
 #
-# USAGE: "python src/data_analysis.py data/crime_1617_clean_data.csv results/"
+# USAGE: "python src/03_data-analysis.py data/crime_1617_clean_data.csv results/"
 
 
 import pandas as pd
