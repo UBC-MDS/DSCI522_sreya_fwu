@@ -130,16 +130,16 @@ We performed 10-fold cross validation to calculate the accuracy of our model. Th
 
 |  Index|  Cross.validation.scores|
 |------:|------------------------:|
-|      1|                0.8736045|
-|      2|                0.8709463|
-|      3|                0.8712121|
-|      4|                0.8745181|
-|      5|                0.8702645|
-|      6|                0.8734547|
-|      7|                0.8745015|
-|      8|                0.8707790|
-|      9|                0.8711779|
-|     10|                0.8750332|
+|      1|                0.8670920|
+|      2|                0.8624402|
+|      3|                0.8640351|
+|      4|                0.8653463|
+|      5|                0.8682706|
+|      6|                0.8676060|
+|      7|                0.8685190|
+|      8|                0.8633342|
+|      9|                0.8663919|
+|     10|                0.8683861|
 
 The average of above 10 scores is around 87%.
 
@@ -149,7 +149,7 @@ To calculate the imprtant features we decided to use Scikit-learn's `feature_imp
 
 |  Primary.Type.Num|  Location.Description.Num|   Domestic|  Latitude|  Longitude|
 |-----------------:|-------------------------:|----------:|---------:|----------:|
-|         0.0940989|                 0.0124246|  0.0022572|         0|          0|
+|         0.0882625|                 0.0072583|  0.0022572|         0|          0|
 
 Thus we conclude that the type of crime (i.e.Primary.Type), description of the location where the incident occurred (i.e.Location.Description) and whether the incident was domestic-related or not (Domestic) are the best indicators of an Arrest.
 

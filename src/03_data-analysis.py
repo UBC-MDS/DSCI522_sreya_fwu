@@ -87,7 +87,7 @@ def decision_tree_model(df, feature_cols):
     Xtrain, Xtest, ytrain, ytest = split_train_test(X,y,0.3)
     
     #fit a decision tree model using sklearn
-    model = tree.DecisionTreeClassifier(max_depth=5)
+    model = tree.DecisionTreeClassifier(max_depth=3)
     model.fit(Xtrain,ytrain)
     predictions = model.predict(Xtest)
     
