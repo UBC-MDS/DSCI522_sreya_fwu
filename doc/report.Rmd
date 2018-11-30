@@ -111,15 +111,15 @@ This is suitable to our dataset which has features like Time, Location, Domestic
 
 |  Features  |  Description  |
 |------------|---------------|
-|Primary.Type| The type of crime|
-|Location.Description| The location of the crime|
-|Domestic    | Whether it was a domestic violence case|
-| Latitude  | The latitude of the crie location  |
-|  Longitude  |  The longitude of the crime location  |
+|Primary.Type|The type of crime|
+|Location.Description|The location of the crime|
+|Domestic|Whether it was a domestic violence case|
+|Latitude|The latitude of the crie location  |
+|Longitude|The longitude of the crime location  |
 
 Since the two features above (i.e. Primary.Types, Location.Description) were categorical, we converted features into numerical values in the data wrangling section. 
 
-A decision tree can take many hyper-parameters. We performed our experiments with the parameters: [max depth=5] which gave us an accuracy around 87%, more details about this will be shown in the results section. At the end, more than 50 nodes were created, we can conclude that this tree can be used as a suitable predictor for arrest. 
+A decision tree can take many hyper-parameters. We performed our experiments with the parameters: [max depth=3] which gave us an accuracy around 86%, more details about this will be shown in the results section. At the end, more than 50 nodes were created, we can conclude that this tree can be used as a suitable predictor for arrest. 
 
 ### Results
 
@@ -128,7 +128,7 @@ The final tree can be visualized below:
 *Figure 4. Decision Tree*
 ![image](../img/Crime_tree.png)
 
-We performed 10-fold cross validation to calculate the accuracy of our model. The table below shows the 10 cross validation scores:
+We performed 10-fold cross validation on data testing set to calculate the accuracy of our model. The table below shows the 10 cross validation scores:
 
 *Table 4. Cross Validation Scores*
 ```{r cross validation results, echo = FALSE}
@@ -136,7 +136,8 @@ cv <- read.csv("./results/crime_1617_decisiontree_cvscores.csv")
 knitr::kable(cv)
 ```
 
-The average of above 10 scores is around 87%.
+
+The average of above 10 scores is around 86% to 87%.
 
 To calculate the imprtant features we decided to use Scikit-learn's `feature_importances_`. This function computes the importance of a feature and it is computed as the (normalized) total reduction of the criterion brought by that feature. It is also known as the Gini importance.
 
