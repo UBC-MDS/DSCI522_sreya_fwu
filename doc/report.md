@@ -25,7 +25,7 @@ Table of contents
 Introduction
 ------------
 
-The goal of the project is to analyze the Chicago crimes dataset and build a model that gives us the strongest predictors of an arrest result. Essentially, this dataset contains the type of Crime, Location, Sub Category of the Crime, Type of Vicinity and Whether the arrest was possible or not.
+The goal of the project is to analyze the Chicago crimes dataset and build a model that gives us the strongest predictors of an arrest result. Essentially, this dataset contains the Type of Crime, Location, Sub Category of the Crime, Type of Vicinity and Whether the arrest was possible or not.
 
 This project consists of two phases - Analyzing the dataset, Building a Decision Tree model.
 
@@ -49,14 +49,16 @@ This dataset reflects reported incidents of crime (with the exception of murders
 
 This dataset has 276819 rows and 24 columns.
 
-*Table 2. Chicago Crime Dataset Dictionary* ![image](../img/data_dict.png)
+*Table 2. Chicago Crime Dataset Dictionary*
+
+![image](../img/data_dict.png)
 
 ### Data Wrangling
 
-The first step is to identify all null values in the dataset and remove all of them. The second step is to modify the datatypes for the below features since they have to be pre-processed in order to fit the model.
+The first step is to identify all null values in the dataset and remove them. The second step is to modify the datatypes for the below features since they have to be pre-processed in order to fit the model.
 
--   Primary.Type: mapping the categorical values to a numerical values
--   Location.Description: mapping the categorical values to a numerical values
+-   Primary.Type: mapping the categorical values to numerical values
+-   Location.Description: mapping the categorical values to numerical values
 -   Date: changing its datatype to Date
 -   Domestic: changing the boolean values to 1/0
 -   Arrest: changing the boolean values to 1/0
@@ -83,17 +85,17 @@ First, we look at the top crime types in Chicago from 2016-2017.
 
 There were more Theft crime incidents (37.7%) compared to the rest of the offenses. Sexual assault cases came in at 20.2% followed by Arson (12.2%). We can also see drug cases at 4.2% followed by far by criminal trespass cases at 2.4%.
 
-To continue, we want to know the hot locations were most crimes are reported.
+To continue, we want to know the hot locations where most crimes are reported.
 
 *Figure 2. The Top Crime Locations in Chicago* ![image](../img/crime_loc_bar.png)
 
-We can see that most crimes were committed on the streets (23.7% )followed by residences (16.2%) . And then both apartments (12.6%) and sidewals (8.9%). This figure shows that crime patterns were consistent over multiple regions.
+We can see that most crimes were committed on the streets (23.7% )followed by residences (16.2%). And then both apartments (12.6%) and sidewalks (8.9%). This figure shows that crime patterns were consistent over multiple regions.
 
 Let's now compare the number of crimes with the number of arrests in 2016 and 2017.
 
 *Figure 3. Compare Crime and Arrest* \#![image](../img/crime_arrest.png)
 
-From the above plots we can see that the number of arrests recorded in each year is very less compared to the number of crimes. The instances of theft is 94556 whereas the number of arrests for theft is 8479. This means that only 8.9% of the accused actually were arrested. This is followed by cases for Sexual assault where only 20% of the criminals got arrested.
+From the above plots we can see that the number of arrests recorded each year is very less compared to the number of crimes. The instances of theft is 94556 whereas the number of arrests for theft is 8479. This means that only 8.9% of the accused actually were arrested. This is followed by cases for Sexual assault where only 20% of the criminals got arrested.
 
 Prediction Model - Decision Tree
 --------------------------------
@@ -102,9 +104,17 @@ Prediction Model - Decision Tree
 
 The benefit of using Decision Tree models is that they are easily understood due to their graphical representation and the simple tests conducted at each node. The tree is built from a set of rules that partition the data by examining value frequency of attributes. At each node the attribute's value is evaluated and depending on the outcome it either takes a route to the next decision node or terminates in a leaf node. A leaf or terminal node indicates the examples of the predicted class.
 
-This is suitable to our dataset which has features like Time, Location, Domestic crime which do not have a direct connection with one another. We thus conducted a Decision Tree analysis on the cleaned dataset for all types of crimes to see the best predictors for an arrest result in Chicago. The features we selected to are: Primary.Types, Location.Description, Domestic, Latitude, and Longitude.
+This is suitable to our dataset which has features like Time, Location, Domestic crime which do not have a direct connection with one another. We thus conducted a Decision Tree analysis on the cleaned dataset for all types of crimes to see the best predictors for an arrest result in Chicago. The features we selected to are:
 
-Since two features above (i.e. Primary.Types, Location.Description) were categorical, we converted features into numerical values in the data wrangling section.
+| Features             | Description                             |
+|----------------------|-----------------------------------------|
+| Primary.Type         | The type of crime                       |
+| Location.Description | The location of the crime               |
+| Domestic             | Whether it was a domestic violence case |
+| Latitude             | The latitude of the crie location       |
+| Longitude            | The longitude of the crime location     |
+
+Since the two features above (i.e. Primary.Types, Location.Description) were categorical, we converted features into numerical values in the data wrangling section.
 
 A decision tree can take many hyper-parameters. We performed our experiments with the parameters: \[max depth=5\] which gave us an accuracy around 87%, more details about this will be shown in the results section. At the end, more than 50 nodes were created, we can conclude that this tree can be used as a suitable predictor for arrest.
 
@@ -118,21 +128,22 @@ We performed 10-fold cross validation to calculate the accuracy of our model. Th
 
 *Table 4. Cross Validation Scores*
 
-|     index|                              cv\_score|
-|---------:|--------------------------------------:|
-|         1|                              0.8736045|
-|         2|                              0.8709463|
-|         3|                              0.8712121|
-|         4|                              0.8745181|
-|         5|                              0.8702645|
-|         6|                              0.8734547|
-|         7|                              0.8745015|
-|         8|                              0.8707790|
-|         9|                              0.8711779|
-|        10|                              0.8750332|
-|  The aver|  age of above 10 scores is around 87%.|
+|  Index|  Cross.validation.scores|
+|------:|------------------------:|
+|      1|                0.8736045|
+|      2|                0.8709463|
+|      3|                0.8712121|
+|      4|                0.8745181|
+|      5|                0.8702645|
+|      6|                0.8734547|
+|      7|                0.8745015|
+|      8|                0.8707790|
+|      9|                0.8711779|
+|     10|                0.8750332|
 
-To calculate the imprtant features we decided to use Scikit-learn's `feature_importances_`. This function computes the importance of a feature is computed as the (normalized) total reduction of the criterion brought by that feature. It is also known as the Gini importance.
+The average of above 10 scores is around 87%.
+
+To calculate the imprtant features we decided to use Scikit-learn's `feature_importances_`. This function computes the importance of a feature and it is computed as the (normalized) total reduction of the criterion brought by that feature. It is also known as the Gini importance.
 
 *Table 5. Feature Importances*
 
@@ -147,9 +158,9 @@ Limitations
 
 First, due to the GitHub space constraint, we only used the dataset for 2016 and 2017. In fact, the entire dataset we downloaded from Kaggle is from 2012 to 2017. If we includes more years into our analysis, the results may change.
 
-Additionally, due to the timing issue, we only performed a decision tree model and archieved a 87% accuracy rate. To implement it, we should perform more modelings such as linear regression model, logistic regression, and etc. Then, based on the assumptions of each model and its accuracy result, we can find the optimal model for this practice.
+Additionally, due to the timing issue, we only performed a decision tree model and archieved a 87% accuracy rate. To implement it, we can perform more modelings such as linear regression model, logistic regression, etc. Then, based on the assumptions of each model and its accuracy result, we can find the optimal model for this practice.
 
-Lastly, in the decision tree model, we choose the maximum deepth to be 5 by considering the trade off between time complexity and accuracy rate. For future implementation, we can perform more analysis about this trade off and pick the optimal deepth level.
+Lastly, in the decision tree model, we choose the maximum depth to be 5 by considering the trade off between time complexity and accuracy rate. For future implementation, we can perform more analysis about this trade off and pick the optimal depth.
 
 References
 ----------

@@ -22,6 +22,7 @@
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(forcats))
+suppressPackageStartupMessages(library(lubridate))
 
 #get arguments
 args <- commandArgs(trailingOnly = TRUE)
@@ -54,7 +55,7 @@ main <- function(){
     head(20)
   crime_loc_count <- crime_loc_count %>% 
     mutate(Location.Description = fct_reorder(Location.Description, counts))
-  #cfrime location bar plot
+  #crime location bar plot
   crime_loc_plot <- generate_bar(crime_loc_count, crime_loc_count$Location.Description, crime_loc_count$counts, "Location", "Count")
   ggsave("crime_loc_bar.png", plot = crime_loc_plot, path = output_file,
          width = 6, height = 6)
@@ -89,13 +90,13 @@ main <- function(){
 }
 
 #define a function to generate bar plot
-generate_bar <- function(dataset, x, y, xlabel, ylabel, ttl){
+generate_bar <- function(dataset, x, y, xlabel, ylabel){
   plot <- dataset %>% 
     ggplot(aes(x, y)) +
     geom_bar(stat="identity", fill="#800000") +
     theme_bw() +
     guides(fill=FALSE) +
-    labs(title=ttl, x=xlabel, y=ylabel) +
+    labs(x=xlabel, y=ylabel) +
     theme(axis.line = element_line(colour = "black"),
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(),
@@ -124,8 +125,8 @@ generate_bar_year <- function(dataset){
 }
     
 generate_bar_month <- function(dataset){
-    plot <- dataset %>%
-    ggplot(aes(x-month, y=Total)) + 
+  plot <- dataset %>%
+    ggplot(aes(x=month, y=Total)) + 
     geom_bar(stat = "identity", fill="#800000", show.legend = FALSE) +
     labs(x="Month", y="Number of instances of crime")
   return(plot)
