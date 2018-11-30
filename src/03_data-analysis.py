@@ -71,8 +71,8 @@ def cross_validation(n, model, Xtest, ytest):
     
     cv_scores = cross_val_score(model, Xtest, ytest, cv=n)
     cv_score = np.mean(cv_scores)
-    cv_df = pd.DataFrame({"index" : list(range(1,n+1)),
-                          "cv_score": cv_scores})
+    cv_df = pd.DataFrame({"Index" : list(range(1,n+1)),
+                          "Cross validation scores": cv_scores})
     return cv_df
 
 
