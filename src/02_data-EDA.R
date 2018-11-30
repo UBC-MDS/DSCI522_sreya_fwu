@@ -21,7 +21,6 @@
 
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(ggplot2))
-suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(forcats))
 
 #get arguments
@@ -122,6 +121,7 @@ generate_bar_year <- function(dataset){
     labs(x="Type of Crime", y="Number of arrests") +
     theme(axis.text.x=element_text(angle=90,hjust=1))
   return(plot)
+}
     
 generate_bar_month <- function(dataset){
     plot <- dataset %>%
