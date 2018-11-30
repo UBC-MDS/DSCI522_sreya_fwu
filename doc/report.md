@@ -116,7 +116,7 @@ This is suitable to our dataset which has features like Time, Location, Domestic
 
 Since the two features above (i.e. Primary.Types, Location.Description) were categorical, we converted features into numerical values in the data wrangling section.
 
-A decision tree can take many hyper-parameters. We performed our experiments with the parameters: \[max depth=5\] which gave us an accuracy around 87%, more details about this will be shown in the results section. At the end, more than 50 nodes were created, we can conclude that this tree can be used as a suitable predictor for arrest.
+A decision tree can take many hyper-parameters. We performed our experiments with the parameters: \[max depth=3\] which gave us an accuracy around 86%, more details about this will be shown in the results section. At the end, more than 50 nodes were created, we can conclude that this tree can be used as a suitable predictor for arrest.
 
 ### Results
 
@@ -130,26 +130,26 @@ We performed 10-fold cross validation to calculate the accuracy of our model. Th
 
 |  Index|  Cross.validation.scores|
 |------:|------------------------:|
-|      1|                0.8670920|
-|      2|                0.8624402|
-|      3|                0.8640351|
-|      4|                0.8653463|
-|      5|                0.8682706|
-|      6|                0.8676060|
-|      7|                0.8685190|
-|      8|                0.8633342|
-|      9|                0.8663919|
-|     10|                0.8683861|
+|      1|                     0.87|
+|      2|                     0.86|
+|      3|                     0.86|
+|      4|                     0.87|
+|      5|                     0.87|
+|      6|                     0.87|
+|      7|                     0.87|
+|      8|                     0.86|
+|      9|                     0.87|
+|     10|                     0.87|
 
-The average of above 10 scores is around 87%.
+The average of above 10 scores is around 86% to 87%.
 
 To calculate the imprtant features we decided to use Scikit-learn's `feature_importances_`. This function computes the importance of a feature and it is computed as the (normalized) total reduction of the criterion brought by that feature. It is also known as the Gini importance.
 
 *Table 5. Feature Importances*
 
-|  Primary.Type.Num|  Location.Description.Num|   Domestic|  Latitude|  Longitude|
-|-----------------:|-------------------------:|----------:|---------:|----------:|
-|         0.0882625|                 0.0072583|  0.0022572|         0|          0|
+|  Primary.Type.Num|  Location.Description.Num|  Domestic|  Latitude|  Longitude|
+|-----------------:|-------------------------:|---------:|---------:|----------:|
+|              0.09|                      0.01|         0|         0|          0|
 
 Thus we conclude that the type of crime (i.e.Primary.Type), description of the location where the incident occurred (i.e.Location.Description) and whether the incident was domestic-related or not (Domestic) are the best indicators of an Arrest.
 
