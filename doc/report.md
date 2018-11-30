@@ -124,7 +124,7 @@ The final tree can be visualized below:
 
 *Figure 4. Decision Tree* ![image](../img/Crime_tree.png)
 
-We performed 10-fold cross validation to calculate the accuracy of our model. The table below shows the 10 cross validation scores:
+We performed 10-fold cross validation on data testing set to calculate the accuracy of our model. The table below shows the 10 cross validation scores:
 
 *Table 4. Cross Validation Scores*
 
