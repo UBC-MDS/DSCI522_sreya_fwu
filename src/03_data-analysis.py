@@ -87,7 +87,7 @@ def decision_tree_model(df, feature_cols):
     Xtrain, Xtest, ytrain, ytest = split_train_test(X,y,0.3)
     
     #fit a decision tree model using sklearn
-    model = tree.DecisionTreeClassifier(max_depth=5)
+    model = tree.DecisionTreeClassifier(max_depth=3)
     model.fit(Xtrain,ytrain)
     predictions = model.predict(Xtest)
     
@@ -138,9 +138,12 @@ def data_analysis(input_file, output_file):
     pred_dict.insert(loc=0, column='Primary.Type', value=pred_dict['Primary.Type.Num'].apply(lambda x: pt_ref[x]))
     pred_dict.insert(loc=1, column='Location.Description', value=pred_dict['Location.Description.Num'].apply(lambda x: loc_ref[x]))
     pred_dict = pred_dict.drop(columns = ['Primary.Type.Num','Location.Description.Num'])
-    
+
+    #cross validation scores
+    cv_df = cv_df.round(2)
+
     #features importance examine
-    feat_df = feat_importance(model, feature_cols)
+    feat_df = feat_importance(model, feature_cols).round(2)
     
     #save the model to disk
     model_file = output_file + "crime_1617_decisiontree_model.sav"
