@@ -43,7 +43,7 @@ main <- function(){
   crime_type_count <- crime_type_count %>% 
     mutate(Primary.Type = fct_reorder(Primary.Type, counts))
   #crime type bar plot
-  crime_type_plot <- generate_bar(crime_type_count, crime_type_count$Primary.Type, crime_type_count$counts, "Type of Crime", "Count", "Top crimes in 2016-2017")
+  crime_type_plot <- generate_bar(crime_type_count, crime_type_count$Primary.Type, crime_type_count$counts, "Type of Crime", "Count")
   ggsave("crime_type_bar.png", plot = crime_type_plot, path = output_file,
          width = 6, height = 6)
   
@@ -56,7 +56,7 @@ main <- function(){
   crime_loc_count <- crime_loc_count %>% 
     mutate(Location.Description = fct_reorder(Location.Description, counts))
   #cfrime location bar plot
-  crime_loc_plot <- generate_bar(crime_loc_count, crime_loc_count$Location.Description, crime_loc_count$counts, "Location", "Count", "Location of crimes in 2016-2017")
+  crime_loc_plot <- generate_bar(crime_loc_count, crime_loc_count$Location.Description, crime_loc_count$counts, "Location", "Count")
   ggsave("crime_loc_bar.png", plot = crime_loc_plot, path = output_file,
          width = 6, height = 6)
   
@@ -119,7 +119,7 @@ generate_bar_year <- function(dataset){
           panel.border = element_blank(),
           panel.background = element_blank()) +
     scale_fill_manual(values=c("#0000A0","#800000")) +
-    labs(title=paste("Number of arrests per crime"), x="Type of Crime", y="Number of arrests") +
+    labs(x="Type of Crime", y="Number of arrests") +
     theme(axis.text.x=element_text(angle=90,hjust=1))
   return(plot)
     
@@ -127,7 +127,7 @@ generate_bar_month <- function(dataset){
     plot <- dataset %>%
     ggplot(aes(x-month, y=Total)) + 
     geom_bar(stat = "identity", fill="#800000", show.legend = FALSE) +
-    labs(title=paste("Number of crimes per month"), x="Month", y="Number of instances of crime")
+    labs(x="Month", y="Number of instances of crime")
   return(plot)
 }
 
