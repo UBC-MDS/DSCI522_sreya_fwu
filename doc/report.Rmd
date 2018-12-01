@@ -128,9 +128,11 @@ A decision tree can take many hyper-parameters. We performed our experiments wit
 The final tree can be visualized below:
 
 *Figure 4. Decision Tree*
-![image](../img/Crime_tree.png)
+![image](../img/crime_tree.png)
 
-We performed 10-fold cross validation on data testing set to calculate the accuracy of our model. The table below shows the 10 cross validation scores:
+There are three splits in this decision tree: the first one is on primary type feature, the second one is on the two feature; location description and primary type, and the third one is on three features; primary type, location description and domestic. After the first split on, the data is partitioned into a binary way where if primary type is less than 5.5 (i.e. primary types are: theft, sexual assault, narcotics, assault, and other offense), we know the arrest result if going to be 1 (i.e. True) since the left tree are all orange. On the other hand, when the primary type is not within those five types, then the arrest result is most likely 0 (i.e. False) as the right tree is blue except the last right node.
+
+Additionally, we performed 10-fold cross validation on data testing set to calculate the accuracy of our model. The table below shows the 10 cross validation scores:
 
 *Table 4. Cross Validation Scores*
 ```{r cross validation results, echo = FALSE}
@@ -138,24 +140,28 @@ cv <- read.csv("./results/crime_1617_decisiontree_cvscores.csv")
 knitr::kable(cv)
 ```
 
-
 The average of above 10 scores is around 86% to 87%.
 
-To calculate the imprtant features we decided to use Scikit-learn's `feature_importances_`. This function computes the importance of a feature and it is computed as the (normalized) total reduction of the criterion brought by that feature. It is also known as the Gini importance.
+*Figure 5. Cross Validation Accuracy vs Tree depth*
+![image](../img/k_fold_plot.png)
 
-*Table 5. Feature Importances*
+According to the accuracy vs tree depth plot above, as the max_depth increases, the 10-fold cross validation accuracy follows a parabolic function which opens downward with values between 86.25% to 88%. Moreover, the accuracy increases till the max_depth reaches to 12. However, by considering the trade off between accuracy and time complexity, we are going to use a simple model with max_depth = 3 since the accuracy bias between depth equals 3 to 12 are not large.
+
+To calculate the important features we decided to use Scikit-learn's `feature_importances_`. This function computes the importance of a feature and it is computed as the (normalized) total reduction of the criterion brought by that feature. It is also known as the Gini importance.
+
+*Table 5. Feature Importance*
 ```{r features importances, echo = FALSE}
 features <- read.csv("./results/crime_1617_decisiontree_featuresimportance.csv")
 knitr::kable(features)
 ```
 
-Thus we conclude that the type of crime (i.e.Primary.Type), description of the location where the incident occurred (i.e.Location.Description) and whether the incident was domestic-related or not (Domestic) are the best indicators of an Arrest.
+Within the five features we considered for our model, the type of crime (i.e.Primary.Type) with the importance of 0.09 and the description of the location where the incident occurred (i.e.Location.Description) with the importance of 0.01 are the two best indicators of an Arrest.
 
 ## Limitations
 
 First, due to the GitHub space constraint, we only used the dataset for 2016 and 2017. In fact, the entire dataset we downloaded from Kaggle is from 2012 to 2017. If we includes more years into our analysis, the results may change.
 
-Additionally, due to the timing issue, we only performed a decision tree model and archieved a 87% accuracy rate. To implement it, we can perform more modelings such as linear regression model, logistic regression, etc. Then, based on the assumptions of each model and its accuracy result, we can find the optimal model for this practice.
+Additionally, due to the timing issue, we only performed a decision tree model and archived a 87% accuracy rate. To implement it, we can perform more modelings such as linear regression model, logistic regression, etc. Then, based on the assumptions of each model and its accuracy result, we can find the optimal model for this practice.
 
 Lastly, in the decision tree model, we choose the maximum depth to be 5 by considering the trade off between time complexity and accuracy rate. For future implementation, we can perform more analysis about this trade off and pick the optimal depth. 
 
