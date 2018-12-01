@@ -104,13 +104,13 @@ In this analysis, we will apply the decision tree method to find the strongest f
 
 The results of our analysis are summarized below:
 
-- The decision tree has deepth of 5 and archives accuracy rate around 87%.
+- The decision tree has depth of 5 and archives accuracy rate around 87%.
 - The type of crime (i.e.Primary.Type), description of the location where the incident occurred (i.e.Location.Description) and whether the incident was domestic-related or not (Domestic) are the best indicators of an Arrest.
 
 The detailed analysis is included in the [final report](https://github.com/UBC-MDS/DSCI522_sreya_fwu/blob/master/doc/report.md).
 
 ### Procedure
-The project includes four major steps: data cleaning, data visualiztion, data analysis and data summarization. To generate the final report, the procedure is shown below:
+The project includes four major steps: data cleaning, data visualization, data analysis and data summarization. To generate the final report, the procedure is shown below:
 
 ![image](https://github.com/UBC-MDS/DSCI522_sreya_fwu/blob/master/img/project_flow_chart.png)
 
@@ -142,7 +142,7 @@ sips -s format png Crime_tree.pdf --out Crime_tree.png
 Rscript -e "rmarkdown::render('./doc/report.Rmd', 'github_document')"
 
 ```
-Instead, you can also run the following code on command line to generate the final report under the root directory:
+Instead, you can also run the following code on the command line to generate the final report under the root directory:
 
 ```
 bash run_all.sh
