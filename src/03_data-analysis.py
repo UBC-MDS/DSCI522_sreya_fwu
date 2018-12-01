@@ -6,7 +6,7 @@
 
 # 03_data-analysis.ipynb
 # 
-# TEAM: Fan Wu
+# TEAM: Fan Wu, Sreya Guha
 # DATE: November 23, 2018
 #
 # PURPOSE: The script takes the clean crime dataset, select five specific columns as features, 
@@ -74,10 +74,22 @@ def kfold_cv(Xtrain,ytrain):
         tree = DecisionTreeClassifier(max_depth = i)
         tree.fit(Xtrain, ytrain)
         accuracy.append(np.mean(cross_val_score(tree, Xtrain, ytrain, cv = 5)))
-    result_depth = depths[np.argmax(test_acc)]
+    result_depth = depth[np.argmax(accuracy)]
     return result_depth
 
-
+def kfold_plot(Xtrain,ytrain):
+    
+    '''function to plot k-fold cross_validation scores against the depth of the tree'''
+    
+    Accuracy = []
+    Depth = range(1, 20)
+    for i in Depth:
+        tree = DecisionTreeClassifier(max_depth = i)
+        tree.fit(Xtrain, ytrain)
+        Accuracy.append(np.mean(cross_val_score(tree, Xtrain, ytrain, cv = 5)))
+    k_fold_plot = plt.plot(Depth, Accuracy)
+    plt.savefig("results/k_fold_plot.png")
+    
 def cross_validation(n, model, Xtest, ytest):
     
     '''cross_validation function is to exam the model accurcy based on the test set provided'''
@@ -103,7 +115,7 @@ def decision_tree_model(df, feature_cols):
 <<<<<<< HEAD
     model = tree.DecisionTreeClassifier(max_depth=kfold_cv(Xtrain,ytrain))
 =======
-    model = tree.DecisionTreeClassifier(max_depth=3)
+    model = tree.DecisionTreeClassifier(max_depth=kfold_cv(Xtrain,ytrain))
 >>>>>>> upstream/master
     model.fit(Xtrain,ytrain)
     predictions = model.predict(Xtest)
@@ -150,6 +162,9 @@ def data_analysis(input_file, output_file):
     #modeling by decision tree
     feature_cols = ['Primary.Type.Num','Location.Description.Num','Domestic','Latitude','Longitude']
     pred_dict, model, cv_df = decision_tree_model(crime_df, feature_cols)
+    
+    #plotting the depth of the tree vs. the cross validation accuracy
+    kfold_plot(Xtrain,ytrain)
     
     #for report purpose, we map the primary.type and location description back to categorical values based on the reference tables
     pred_dict.insert(loc=0, column='Primary.Type', value=pred_dict['Primary.Type.Num'].apply(lambda x: pt_ref[x]))
