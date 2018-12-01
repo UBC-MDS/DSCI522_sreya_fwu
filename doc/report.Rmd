@@ -94,6 +94,13 @@ Let's now compare the number of crimes with the number of arrests in 2016 and 20
 
 From the above plots we can see that the number of arrests recorded each year is very less compared to the number of crimes. The instances of theft is 94556 whereas the number of arrests for theft is 8479. This means that only 8.9% of the accused actually were arrested. This is followed by cases for Sexual assault where only 20% of the criminals got arrested.
 
+Let's also have a look at the crime trend across months.
+
+*Figure 3. Compare Crime and Month*
+#![image](../img/crime_month.png)
+
+From the above plot we can see an upward trend starting from May until it peaks in July. Then it gradually goes down until December and spikes again on January. Strangely, less crimes are committed during the month of February. We can see that most crimes have peak number during month of July. This can be attributed to the extremely harsh winters in Chicago. 
+
 ## Prediction Model - Decision Tree
 
 ### Modeling

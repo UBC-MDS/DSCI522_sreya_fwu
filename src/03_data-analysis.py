@@ -64,6 +64,19 @@ def split_train_test(X,y,num):
     Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, test_size=num, random_state = 48)
     return Xtrain, Xtest, ytrain, ytest
 
+def kfold_cv(Xtrain,ytrain):
+    
+    '''k-fold cross_validation function to find out the best depth for the tree'''
+    
+    accuracy = []
+    depth = range(1, 20)
+    for i in depth:
+        tree = DecisionTreeClassifier(max_depth = i)
+        tree.fit(Xtrain, ytrain)
+        accuracy.append(np.mean(cross_val_score(tree, Xtrain, ytrain, cv = 5)))
+    result_depth = depths[np.argmax(test_acc)]
+    return result_depth
+
 
 def cross_validation(n, model, Xtest, ytest):
     
@@ -87,7 +100,11 @@ def decision_tree_model(df, feature_cols):
     Xtrain, Xtest, ytrain, ytest = split_train_test(X,y,0.3)
     
     #fit a decision tree model using sklearn
+<<<<<<< HEAD
+    model = tree.DecisionTreeClassifier(max_depth=kfold_cv(Xtrain,ytrain))
+=======
     model = tree.DecisionTreeClassifier(max_depth=3)
+>>>>>>> upstream/master
     model.fit(Xtrain,ytrain)
     predictions = model.predict(Xtest)
     
