@@ -62,7 +62,7 @@ def data_summary(input_file, output_file):
     feature_cols = ['Primary.Type.Num','Location.Description.Num','Domestic','Latitude','Longitude']
     
     #generate decision tree
-    crime_tree = save_and_show_decision_tree(model,feature_cols, ['Target:1', 'Target:0'], output_file + 'Crime_tree')
+    crime_tree = save_and_show_decision_tree(model,feature_cols, ['Target:1', 'Target:0'], output_file + 'crime_tree')
 
 #call main function
 if __name__ == '__main__':

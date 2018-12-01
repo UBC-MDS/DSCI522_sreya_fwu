@@ -38,6 +38,7 @@ import pickle
 from sklearn.model_selection import train_test_split
 from sklearn import tree
 from sklearn.model_selection import cross_val_score
+import matplotlib.pyplot as plt
 
 def main():
     
@@ -71,9 +72,9 @@ def kfold_cv(Xtrain,ytrain):
     accuracy = []
     depth = range(1, 20)
     for i in depth:
-        tree = DecisionTreeClassifier(max_depth = i)
-        tree.fit(Xtrain, ytrain)
-        accuracy.append(np.mean(cross_val_score(tree, Xtrain, ytrain, cv = 5)))
+        model = tree.DecisionTreeClassifier(max_depth = i)
+        model.fit(Xtrain, ytrain)
+        accuracy.append(np.mean(cross_val_score(model, Xtrain, ytrain, cv = 5)))
     result_depth = depth[np.argmax(accuracy)]
     return result_depth
 
@@ -84,11 +85,11 @@ def kfold_plot(Xtrain,ytrain):
     Accuracy = []
     Depth = range(1, 20)
     for i in Depth:
-        tree = DecisionTreeClassifier(max_depth = i)
-        tree.fit(Xtrain, ytrain)
-        Accuracy.append(np.mean(cross_val_score(tree, Xtrain, ytrain, cv = 5)))
+        model = tree.DecisionTreeClassifier(max_depth = i)
+        model.fit(Xtrain, ytrain)
+        Accuracy.append(np.mean(cross_val_score(model, Xtrain, ytrain, cv = 5)))
     k_fold_plot = plt.plot(Depth, Accuracy)
-    plt.savefig("results/k_fold_plot.png")
+    plt.savefig("img/k_fold_plot.png")
     
 def cross_validation(n, model, Xtest, ytest):
     
@@ -112,11 +113,8 @@ def decision_tree_model(df, feature_cols):
     Xtrain, Xtest, ytrain, ytest = split_train_test(X,y,0.3)
     
     #fit a decision tree model using sklearn
-<<<<<<< HEAD
-    model = tree.DecisionTreeClassifier(max_depth=kfold_cv(Xtrain,ytrain))
-=======
-    model = tree.DecisionTreeClassifier(max_depth=kfold_cv(Xtrain,ytrain))
->>>>>>> upstream/master
+    #model = tree.DecisionTreeClassifier(max_depth=kfold_cv(Xtrain,ytrain))
+    model = tree.DecisionTreeClassifier(max_depth=3)
     model.fit(Xtrain,ytrain)
     predictions = model.predict(Xtest)
     
@@ -127,6 +125,9 @@ def decision_tree_model(df, feature_cols):
     
     #run 10-fold cross validation 
     cv_df = cross_validation(10, model, Xtest, ytest)
+
+    #plotting the depth of the tree vs. the cross validation accuracy
+    kfold_plot(Xtrain,ytrain)
     
     return pred_dict, model, cv_df
 
@@ -163,8 +164,6 @@ def data_analysis(input_file, output_file):
     feature_cols = ['Primary.Type.Num','Location.Description.Num','Domestic','Latitude','Longitude']
     pred_dict, model, cv_df = decision_tree_model(crime_df, feature_cols)
     
-    #plotting the depth of the tree vs. the cross validation accuracy
-    kfold_plot(Xtrain,ytrain)
     
     #for report purpose, we map the primary.type and location description back to categorical values based on the reference tables
     pred_dict.insert(loc=0, column='Primary.Type', value=pred_dict['Primary.Type.Num'].apply(lambda x: pt_ref[x]))
