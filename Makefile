@@ -1,8 +1,11 @@
 # Makefile
-# author: Fan Wu
+# author: Fan Wu & Sreya Guha
 # Date: November 28, 2018
-# Purpose: This script is to create an entire data analysis project pipline
+# Purpose: This script is use to automate our data analysis project pipline
 # Useage:
+# 		- make <specific script name>
+#			- make all
+#			- make clean
 
 #####################################
 # Run Scripts
@@ -47,5 +50,6 @@ clean:
 		rm -f results/crime_1617_decisiontree_model.sav results/crime_1617_decisiontree_result.csv results/crime_1617_decisiontree_cvscores.csv results/crime_1617_decisiontree_featuresimportance.csv
 		rm -f img/crime_tree.pdf
 		rm -f img/crime_tree.png
+#		rm -f
 		rm -f doc/report.md
 		rm -f doc/report.html
