@@ -31,6 +31,8 @@ knitr::opts_knit$set(root.dir = here::here())
 
 The goal of the project is to analyze the Chicago crimes dataset and build a model that gives us the strongest predictors of an arrest result. Essentially, this dataset contains the Type of Crime, Location, Sub Category of the Crime, Type of Vicinity and Whether the arrest was possible or not.
 
+Using the crime figures collected in Chicago between 2016 and 2017 and exploring the concentrations of similar crimes, their location and their pattern, we could help law enforcement agencies gain efficiency. Moreover, finding the best predictors for an arrest could assist the police in efficient allocation of resources.
+
 This project consists of two phases - Analyzing the dataset, Building a Decision Tree model.
 
 ## Dataset
@@ -39,7 +41,7 @@ This project consists of two phases - Analyzing the dataset, Building a Decision
 
 This dataset reflects reported incidents of crime (with the exception of murders where data exists for each victim) that occurred in the City of Chicago from 2016 to 2017. Data is extracted from the Chicago Police Department's CLEAR (Citizen Law Enforcement Analysis and Reporting) system. In order to protect the privacy of crime victims, addresses are shown at the block level only and specific locations are not identified. The data is in the following form:
 
-*Table 1. Chicago Crime Raw Dataset* 
+*Table 1. Chicago Crimes Raw Dataset* 
 
 ```{r raw data, echo = FALSE}
 crime_rawdata <- head(read.csv("./data/crime_1617_raw_data.csv"))
@@ -48,7 +50,7 @@ knitr::kable(crime_rawdata)
 
 This dataset has 276819 rows and 24 columns. 
 
-*Table 2. Chicago Crime Dataset Dictionary*
+*Table 2. Chicago Crimes Dataset Dictionary for better understanding of the variables*
 
 ![image](../img/data_dict.png)
 
@@ -63,7 +65,7 @@ The second step is to modify the datatypes for the below features since they hav
 - Domestic: changing the boolean values to 1/0
 - Arrest: changing the boolean values to 1/0
 
-*Table 3. Chicago Crime Clean Dataset*
+*Table 3. Chicago Crimes Clean Dataset*
 ```{r data wrangling, echo = FALSE}
 crime_data <- head(read.csv("./data/crime_1617_clean_data.csv"))
 knitr::kable(crime_data)
@@ -75,28 +77,28 @@ Before doing the modeling, we need some preliminary investigations of the datase
 
 First, we look at the top crime types in Chicago from 2016-2017.
 
-*Figure 1. The Top Crime Types in Chicago*
+*Figure 1. The most rampant crimes in Chicago in 2016 and 2017 arranged by number of incidents reported*
 ![image](../img/crime_type_bar.png)
 
 There were more Theft crime incidents (37.7%) compared to the rest of the offenses. Sexual assault cases came in at 20.2% followed by Arson (12.2%). We can also see drug cases at 4.2% followed by far by criminal trespass cases at 2.4%.
 
 To continue, we want to know the hot locations where most crimes are reported.
 
-*Figure 2. The Top Crime Locations in Chicago*
+*Figure 2. The top locations for crime occurence in Chicago arranged by number of incidents reported*
 ![image](../img/crime_loc_bar.png)
 
 We can see that most crimes were committed on the streets (23.7% )followed by residences (16.2%). And then both apartments (12.6%) and sidewalks (8.9%). This figure shows that crime patterns were consistent over multiple regions.
 
 Let's now compare the number of crimes with the number of arrests in 2016 and 2017.
 
-*Figure 3. Compare Crime and Arrest*
+*Figure 3. The contrast between the number of crime incidents reported and arrests made for the crime*
 #![image](../img/crime_arrest.png)
 
 From the above plots we can see that the number of arrests recorded each year is very less compared to the number of crimes. The instances of theft is 94556 whereas the number of arrests for theft is 8479. This means that only 8.9% of the accused actually were arrested. This is followed by cases for Sexual assault where only 20% of the criminals got arrested.
 
 Let's also have a look at the crime trend across months.
 
-*Figure 3. Compare Crime and Month*
+*Figure 3. Trend between crime occurences and the month of the year*
 #![image](../img/crime_month.png)
 
 From the above plot we can see an upward trend starting from May until it peaks in July. Then it gradually goes down until December and spikes again on January. Strangely, less crimes are committed during the month of February. We can see that most crimes have peak number during month of July. This can be attributed to the extremely harsh winters in Chicago. 
@@ -160,7 +162,9 @@ Lastly, in the decision tree model, we choose the maximum depth to be 5 by consi
 
 ## References
 
-1. [Analysis and Prediction of Crimes in Chicago](https://github.com/cnreddy11/Analysis-and-Prediction-of-Crimes-in-Chicago/blob/master/Chicago%20Crimes%20Analysis.ipynb)
-2. [Crimes in Chicago - Kaggle](https://www.kaggle.com/currie32/crimes-in-chicago)
-3. [Predictive Analysis of Crimes in Chicago](http://sites.warnercnr.colostate.edu/cnreddy/predictive-analysis-crimes-chicago/)
-4. [Chicago Crime Mapping: Magic of Data Science and Python](https://hackernoon.com/chicago-crime-mapping-magic-of-data-science-and-python-f2ecad74a597)
+|  Title  |  Link  |
+|------------|---------------|
+|Analysis and Prediction of Crimes in Chicago|https://github.com/cnreddy11/Analysis-and-Prediction-of-Crimes-in-Chicago/blob/master/Chicago%20Crimes%20Analysis.ipynb|
+|Crimes in Chicago - Kaggle|https://www.kaggle.com/currie32/crimes-in-chicago|
+|Predictive Analysis of Crimes in Chicago|http://sites.warnercnr.colostate.edu/cnreddy/predictive-analysis-crimes-chicago/|
+|Chicago Crime Mapping: Magic of Data Science and Python|https://hackernoon.com/chicago-crime-mapping-magic-of-data-science-and-python-f2ecad74a597 |
