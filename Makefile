@@ -24,11 +24,11 @@ results/crime_1617_decisiontree_model.sav results/crime_1617_decisiontree_result
 		python src/03_data-analysis.py "./data/crime_1617_clean_data.csv" "./results/"
 
 # step 4. run 04_data-summary.py script: modeling summary
-img/crime_tree.png : results src/04_data-summary.py
+img/crime_tree.png : results/crime_1617_decisiontree_model.sav src/04_data-summary.py
 		python src/04_data-summary.py results/crime_1617_decisiontree_model.sav img/
 
 # step 5. knit the final report.rmd
-doc/report.md doc/report.html : doc/report.rmd results results_graph img_eda
+doc/report.md doc/report.html : doc/report.rmd img/crime_arrest.png img/crime_loc_bar.png img/crime_month.png img/crime_type_bar.png img/crime_tree.png
 		Rscript -e "rmarkdown::render('./doc/report.Rmd', 'github_document')"
 
 
