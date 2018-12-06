@@ -27,12 +27,8 @@ results : data/crime_1617_clean_data.csv src/03_data-analysis.py
 results_graph : results src/04_data-summary.py
 		python src/04_data-summary.py results/crime_1617_decisiontree_model.sav img/
 
-# step 5. convert crime_tree.pdf to crime_tree.png
-img/crime_tree.png : results results_graph
-		sips -s format png img/crime_tree.pdf --out img/crime_tree.png
-
-# step 6. knit the final report.rmd
-doc/report.md : doc/report.rmd results results_graph img/crime_tree.png img_eda
+# step 5. knit the final report.rmd
+doc/report.md : doc/report.rmd results results_graph img_eda
 		Rscript -e "rmarkdown::render('./doc/report.Rmd', 'github_document')"
 
 
@@ -48,8 +44,6 @@ clean:
 		rm -f data/crime_1617_clean_data.csv
 		rm -f img/crime_type_bar.png img/crime_loc_bar.png img/crime_arrest.png img/crime_month.png
 		rm -f results/crime_1617_decisiontree_model.sav results/crime_1617_decisiontree_result.csv results/crime_1617_decisiontree_cvscores.csv results/crime_1617_decisiontree_featuresimportance.csv
-		rm -f img/crime_tree.pdf
 		rm -f img/crime_tree.png
-#		rm -f
 		rm -f doc/report.md
 		rm -f doc/report.html
