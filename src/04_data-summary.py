@@ -49,7 +49,7 @@ def save_and_show_decision_tree(model, feature_cols, class_names, save_file_pref
                              filled=True, rounded=True,  
                              special_characters=True, **kwargs)  
 
-    graph = graphviz.Source(dot_data) 
+    graph = graphviz.Source(dot_data, format = "png") 
     graph.render(save_file_prefix) 
     return graph
 

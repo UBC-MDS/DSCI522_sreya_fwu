@@ -138,18 +138,18 @@ Additionally, we performed 10-fold cross validation on data testing set to calcu
 
 *Table 4. Cross Validation Scores*
 
-|  Index|  Cross.validation.scores|
-|------:|------------------------:|
-|      1|                     0.87|
-|      2|                     0.86|
-|      3|                     0.86|
-|      4|                     0.87|
-|      5|                     0.87|
-|      6|                     0.87|
-|      7|                     0.87|
-|      8|                     0.86|
-|      9|                     0.87|
-|     10|                     0.87|
+|  Cross.validation.scores|  Index|
+|------------------------:|------:|
+|                     0.87|      1|
+|                     0.86|      2|
+|                     0.86|      3|
+|                     0.87|      4|
+|                     0.87|      5|
+|                     0.87|      6|
+|                     0.87|      7|
+|                     0.86|      8|
+|                     0.87|      9|
+|                     0.87|     10|
 
 The average of above 10 scores is around 86% to 87%.
 
