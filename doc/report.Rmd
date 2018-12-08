@@ -80,6 +80,7 @@ First, we look at the top crime types in Chicago from 2016-2017.
 *Figure 1. The most rampant crimes in Chicago in 2016 and 2017 arranged by number of incidents reported*
 ![image](../img/crime_type_bar.png)
 
+According to Chicago Tribune crime rates in January 2016 soared by 67 percent over the previous January, and each month that followed in 2016 saw more crimes compared to the same month in 2015. 
 There were more Theft crime incidents (37.7%) compared to the rest of the offenses. Sexual assault cases came in at 20.2% followed by Arson (12.2%). We can also see drug cases at 4.2% followed by far by criminal trespass cases at 2.4%.
 
 To continue, we want to know the hot locations where most crimes are reported.
@@ -87,6 +88,7 @@ To continue, we want to know the hot locations where most crimes are reported.
 *Figure 2. The top locations for crime occurence in Chicago arranged by number of incidents reported*
 ![image](../img/crime_loc_bar.png)
 
+Of the 77 community areas in Chicago, reports say, 31 areas saw either a decrease in crimes or no increase. Five neighborhoods - Austin, Englewood, New City, West Englewood and West Garfield Park - accounted for nearly half of the increase.
 We can see that most crimes were committed on the streets (23.7% )followed by residences (16.2%). And then both apartments (12.6%) and sidewalks (8.9%). This figure shows that crime patterns were consistent over multiple regions.
 
 Let's now compare the number of crimes with the number of arrests in 2016 and 2017.
