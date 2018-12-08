@@ -109,9 +109,7 @@ The project includes four major steps:
 3. data analysis and 
 4. data summarization 
 
-To generate the final report, the procedure is shown below:
-
-![image](https://github.com/UBC-MDS/DSCI522_sreya_fwu/blob/master/img/project_flow_chart.png)
+To generate the final report, the detailed procedure will be shown in the dependency section (i.e.Dependency Diagram of the Makefile).
 
 The purposes of the four scripts are:
 - 01_data-clean.py: The script takes a raw crime dataset and generates a clean dataset through cleaning null values, updating data formats, and classifying data.
