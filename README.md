@@ -148,7 +148,7 @@ To run this analysis using Docker
 3. Type the following code to download the Docker image of this project:
 
 ```
-To build the docker image: docker build --tag dsci522_sreya_fwu:0.1 .
+docker pull fwu03/dsci522_sreya_fwu
 
 ```
 
@@ -157,14 +157,14 @@ To build the docker image: docker build --tag dsci522_sreya_fwu:0.1 .
 5. Type the following code to run the analysis:
 
 ```
-To create the report: docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' all
+docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' all
 
 ```
 
 6. To clean up the analysis, type the following code:
 
 ```
-To get a clean start: docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' clean
+docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' clean
 
 ```
 
