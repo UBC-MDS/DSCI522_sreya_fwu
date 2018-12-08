@@ -7,7 +7,7 @@
 
 
 ### Chicago Crimes Dataset
-We are going to analyze the Chicago crimes dataset that reflects reported incidents of crime (with the exception of murders where data exists for each victim) that occurred in the City of Chicago from 2016 to 2017. Data is extracted from the Chicago Police Department’s CLEAR (Citizen Law Enforcement Analysis and Reporting) system. In order to protect the privacy of crime victims, addresses are shown at the block level only and specific locations are not identified.
+We are going to analyze the Chicago crimes dataset that reflects reported incidents of crime (with the exception of murders where data exists for each victim) that occurred in the City of Chicago from 2016 to 2017. Data is extracted from the Chicago Police Department's CLEAR (Citizen Law Enforcement Analysis and Reporting) system. In order to protect the privacy of crime victims, addresses are shown at the block level only and specific locations are not identified.
 Essentially, this dataset contains the type of Crime, Location, Sub Category of the Crime, Type of Vicinity and Whether the arrest was possible or not.
 
 The dataset includes the following contents:
@@ -81,19 +81,20 @@ Step 2. Data wrangling:
 - Checking null values and drop all of them
 - Cleaning the description column with standard keywords
 - Putting the arrest and domestic columns into 1 (True) or 0 (False)
-- Separating the date and time into two columns.
+- Separating the date and time into two columns
 
 Step 3. Visualizations of the dataset (EDA):
 
 - The number of crimes type reported in the 2 years
 - Location with the highest crimes
 - Summary of the crime and arrest results
+- Trend between the occurences of crime and the month of the year
 
 Step 4. Prediction Model: 
 
 In this analysis, we will apply the decision tree method to find the strongest features that are able to predict the arrest result.
 
-- Separate the dataset into training and testing datasets (7:3).
+- Split the dataset into training and testing datasets (7:3)
 - Define the variable X to be a feature vector that includes the primary type (category of the crime), location.description, domestic, latitude, and longitude.
 - Define the target variable Y to be the arrest result. 
 - Use the decision tree package in Python (i.e. Scikit Learn) to model the relationship between X and Y. 
@@ -105,12 +106,27 @@ In this analysis, we will apply the decision tree method to find the strongest f
 The results of our analysis are summarized below:
 
 - The decision tree has depth of 5 and archives accuracy rate around 87%.
-- The type of crime (i.e.Primary.Type), description of the location where the incident occurred (i.e.Location.Description) and whether the incident was domestic-related or not (Domestic) are the best indicators of an Arrest.
+
+- The best indicators of an arrest are:
+
+| Indicator | Description |
+| --- | -- |
+|Primary.Type | Type of crime |
+| Location.Description | Location where the incident occurred | 
+| Domestic | Whether it is a domestic violence case | 
+
 
 The detailed analysis is included in the [final report](https://github.com/UBC-MDS/DSCI522_sreya_fwu/blob/master/doc/report.md).
 
 ### Procedure
-The project includes four major steps: data cleaning, data visualization, data analysis and data summarization. To generate the final report, the procedure is shown below:
+The project includes four major steps: 
+
+1. data cleaning, 
+2. data visualization, 
+3. data analysis and 
+4. data summarization 
+
+To generate the final report, the procedure is shown below:
 
 ![image](https://github.com/UBC-MDS/DSCI522_sreya_fwu/blob/master/img/project_flow_chart.png)
 
@@ -120,7 +136,7 @@ The purposes of the four scripts are:
 - 03_data-analysis.py: The script takes the clean crime dataset, select five specific columns as features, split the dataset as train and test sets (i.e. 7:3), and fit it into a decision tree model. The script also performs a 10-fold cross validation and features importance examine for the model and provides the corresponding scores.
 - 04_data-summary.py: The script takes the model from 03_data-analysis.py and generates the corresponding decision tree.
 
-### Usages
+### Usage
 
 There are three recommended methods of running the analysis
 
@@ -170,7 +186,7 @@ make clean
 
 ```
 
-##### The usages of the scripts in the Makefile 
+##### The usage of the scripts in the Makefile 
 
 ```
 # step 1. run 01_data-clean.py script: clean dataset
