@@ -51,23 +51,6 @@ We wrote a script to download the dataset as follows:
 
 This is a **predictive** question and we shall use a Decision Tree to answer the same.
 
-### Dependencies
-* R version 3.5.1
-* R libraries:
-    + tidyverse
-    + ggplot2
-    + dplyr
-    + forcats
-* Python version 3.6.5
-* Python packages:
-    + sys
-    + pandas
-    + matplotlib
-    + numpy
-    + pickle
-    + graphviz
-    + sklearn
-
 ### Project Objective
 The goal of this analysis is to explore the Chicago Crimes Dataset from 2016-2017, classify the features that determine the arrest result, and construct a predictive model to identify whether an arrest could happen for a future crime.
 
@@ -208,4 +191,32 @@ sips -s format png Crime_tree.pdf --out Crime_tree.png
 Rscript -e "rmarkdown::render('./doc/report.Rmd', 'github_document')"
 
 ```
+### Dependency Diagram of the Makefile
+![image](Makefile.png)
+
+### Dependencies
+* R (version 3.5.1)
+* R libraries:
+    + `here (version 0.1)`
+    + `tidyverse (version 1.2.1)`
+    + `ggplot2 (version 3.1.0)`
+    + `dplyr (version 0.7.8)`
+    + `forcats (version 0.3.0)`
+    + `lubridate (version 1.7.4)`
+* Python version 3.6.5
+* Python packages:
+    + `pandas (version 0.23.4)`
+    + `matplotlib (version 3.0.1)`
+    + `numpy (version 1.15.3)`
+    + `pickle (version 4.0)`
+    + `graphviz (version 0.8.4)`
+    + `sklearn (version 0.20.0)`
+    
+### Release History
+
+|Version|Description|
+|--|--|
+|[V0.1](https://github.com/UBC-MDS/DSCI522_sreya_fwu/tree/V1.0)|Initial Project Proposal|
+|[V0.2](https://github.com/UBC-MDS/DSCI522_sreya_fwu/tree/v0.2)|Milestone 1 - A data analysis project with multiple scripts and a final report|
+|[V0.3](https://github.com/UBC-MDS/DSCI522_sreya_fwu/tree/v0.3)|Milestone 2 - Building an automated data analysis pipeline|
 
