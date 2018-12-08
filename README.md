@@ -157,7 +157,7 @@ docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 m
 4. Type the following code to run the analysis:
 
 ```
-make all
+make all_make
 
 ```
 5. To clean up the analysis, type the following code:

@@ -10,7 +10,12 @@
 #####################################
 # Run all scripts
 #####################################
-all : doc/report.md
+
+# run makefile using `Make` only, this command won't generate the dependency diagram
+all_make: doc/report.md
+
+# run makefile using `Docker`, this command will generate the dependency diagram
+all: doc/report.md Makefile.png
 
 #####################################
 # Run Scripts
@@ -46,6 +51,11 @@ doc/report.md: doc/report.rmd \
 														$(RESULT)
 		Rscript -e "rmarkdown::render('./doc/report.Rmd')"
 
+# step 6. Generate the dependency diagram (only for the Docker process)
+Makefile.png: Makefile
+	makefile2graph > Makefile.dot
+	dot -Tpng Makefile.dot -o Makefile.png
+
 #####################################
 # Remove all files
 #####################################
@@ -56,3 +66,4 @@ clean:
 		rm -f img/crime_tree.png
 		rm -f doc/report.md
 		rm -f doc/report.html
+		rm -f Makefile.png Makefile.dot
