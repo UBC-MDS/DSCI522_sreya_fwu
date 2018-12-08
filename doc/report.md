@@ -167,6 +167,8 @@ To calculate the important features we decided to use Scikit-learn's `feature_im
 
 Within the five features we considered for our model, the type of crime (i.e.Primary.Type) with the importance of 0.09 and the description of the location where the incident occurred (i.e.Location.Description) with the importance of 0.01 are the two best indicators of an Arrest.
 
+Therefore, we can conclude that when people make decision of whether a criminal should be arrested or not, the most significant thing element they will consider is the crime type. As the figure 3 indicates above, theft were happened a lots in Chicago, but most of the criminals were not arrested. However, for narcotics, every criminal was arrested.
+
 Limitations
 -----------
 
