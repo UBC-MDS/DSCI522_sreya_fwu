@@ -121,7 +121,57 @@ The purposes of the four scripts are:
 - 04_data-summary.py: The script takes the model from 03_data-analysis.py and generates the corresponding decision tree.
 
 ### Usages
-The usages of the scripts are:
+
+There are three recommended methods of running the analysis
+
+#### Docker
+
+To run this analysis using Docker
+1. Ensure [Docker](https://www.docker.com/get-started) is installed on your computer
+2. Clone/download this repository: [A Crime Analysis in Chicago](https://github.com/UBC-MDS/DSCI522_sreya_fwu)
+3. Type the following code to download the Docker image of this project:
+
+```
+To build the docker image: docker build --tag dsci522_sreya_fwu:0.1 .
+
+```
+
+4. Use the command line to navigate to the root of this project on your computer
+
+5. Type the following code to run the analysis:
+
+```
+To create the report: docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' all
+
+```
+
+6. To clean up the analysis, type the following code:
+
+```
+To get a clean start: docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' clean
+
+```
+
+#### Makefile (without Docker)
+
+1. Clone/download this repository: [A Crime Analysis in Chicago](https://github.com/UBC-MDS/DSCI522_sreya_fwu)
+2. Ensure all dependecies are installed (both R and Python)
+3. Use the command line to navigate to the root of this project on your computer
+4. Type the following code to run the analysis:
+
+```
+make all
+
+```
+5. To clean up the analysis, type the following code:
+
+```
+make clean
+
+```
+
+##### The usages of the scripts in the Makefile 
+
 ```
 # step 1. run 01_data-clean.py script: clean dataset
 python src/01_data-clean.py data/crime_1617_raw_data.csv data/crime_1617_clean_data.csv
@@ -142,33 +192,4 @@ sips -s format png Crime_tree.pdf --out Crime_tree.png
 Rscript -e "rmarkdown::render('./doc/report.Rmd', 'github_document')"
 
 ```
-Instead, you can also run the following code on the command line to generate the final report under the root directory:
 
-```
-bash run_all.sh
-
-```
-Running the Makefile :
-
-The analysis can also be reproduced by running the markfile.
-Markfile Usages:
-
-```
-# run sepcific script
-make <specific script name>
-
-# run the whole project
-make all
-
-# clean all files generated
-make clean
-
-```
-
-Running the Dockerfile :
-
-```
-To build the docker image: docker build --tag dsci522_sreya_fwu:0.1 .
-To create the report: docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' all
-To get a clean start: docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' clean
-```
