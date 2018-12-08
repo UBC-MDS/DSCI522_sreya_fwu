@@ -138,14 +138,14 @@ docker pull fwu03/dsci522_sreya_fwu
 5. Type the following code to run the analysis:
 
 ```
-docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' all
+docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu fwu03/dsci522_sreya_fwu make -C '/home/rstudio/dsci522_sreya_fwu' all
 
 ```
 
 6. To clean up the analysis, type the following code:
 
 ```
-docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu dsci522_sreya_fwu:0.1 make -C '/home/rstudio/dsci522_sreya_fwu' clean
+docker run --rm -v `pwd`:/home/rstudio/dsci522_sreya_fwu fwu03/dsci522_sreya_fwu make -C '/home/rstudio/dsci522_sreya_fwu' clean
 
 ```
 
